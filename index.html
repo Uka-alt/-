@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+...
+(<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Киноны санал</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+    body {
+        background: linear-gradient(blue, #ffd1dc);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+    /* баярлаж буй дүрслэл */
+    .smile-bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+    .flower {
+        position: absolute;
+        font-size: 20px;
+        animation: float 8s infinite ease-in-out;
+    }
+    @keyframes float {
+        0%, 100% { transform: translateY(0) rotate(0); }
+        50% { transform: translateY(-20px) rotate(10deg); }
+    }
+    /* Зүрхний дүрслэл */
+    .heart {
+        position: absolute;
+        color: #e91e63;
+        font-size: 24px;
+        animation: rise 6s infinite ease-in-out;
+        z-index: 0;
+    }
+    @keyframes rise {
+        0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+        50% { opacity: 1; }
+        100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+    }
+    /* Үндсэн контент */
+    .container {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        text-align: center;
+        z-index: 1;
+        max-width: 80%;
+    }
+    h1 {
+        color: #333;
+        margin-bottom: 15px;
+    }
+    .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 5px;
+        transition: 0.3s;
+    }
+    .accept-btn {
+        background: #e91e63;
+        color: green;
+    }
+    .accept-btn:hover {
+        background: #d81b60;
+    }
+    .reject-btn {
+        background: #ccc;
+        color: #333;
+    }
+    .reject-btn:hover {
+        background: #bbb;
+    }
+</style>
+</head>
+<body>
+
+<div class="flower-bg" id="flower-bg"></div>
+<div class="flower-bg" id="heart-bg"></div>
+
+<div class="container">
+    <h1>🦦 Сюрприз! 🦦 </h1>
+    <p>Энэ бол таны төлөө бэлдсэн жижигхэн гэнэтийн бэлэг ❤️</p>
+    <button class="btn accept-btn" onclick="alert('Та зөвшөөрлөө! ❤️')">Зөвшөөрөх</button>
+    <button class="btn reject-btn" onclick="alert('Та татгалзлаа 😢')">Татгалзах</button>
+</div>
+
+<script>
+    // Санамсаргүй цэцэг үүсгэх
+    const flowers = ["🎬", "🍿", "🎬", "🎭"];
+    const flowerBg = document.getElementById("flower-bg");
+    for (let i = 0; i < 20; i++) {
+        let f = document.createElement("div");
+        f.className = "flower";
+        f.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+        f.style.left = Math.random() * 100 + "vw";
+        f.style.top = Math.random() * 100 + "vh";
+        f.style.animationDuration = (5 + Math.random() * 5) + "s";
+        flowerBg.appendChild(f);
+    }
+
+    // Санамсаргүй зүрх үүсгэх
+    const heartBg = document.getElementById("heart-bg");
+    for (let i = 0; i < 15; i++) {
+        let h = document.createElement("div");
+        h.className = "heart";
+        h.textContent = "❤️";
+        h.style.left = Math.random() * 100 + "vw";
+        h.style.animationDuration = (4 + Math.random() * 4) + "s";
+        h.style.fontSize = (16 + Math.random() * 20) + "px";
+        heartBg.appendChild(h);
+    }
+</script>
+
+</body>
+</html>)
+...
+</body>
+</html>
