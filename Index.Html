@@ -64,6 +64,11 @@
         color: #333;
         margin-bottom: 15px;
     }
+    p {
+        color: #555;
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
     .btn {
         padding: 10px 20px;
         border: none;
@@ -71,7 +76,7 @@
         cursor: pointer;
         font-size: 16px;
         margin: 5px;
-        transition: 0.3s;
+        transition: 0.2s;
     }
     .accept-btn {
         background: #e91e63;
@@ -83,12 +88,15 @@
     .reject-btn {
         background: #ccc;
         color: #333;
-        position: relative;
     }
     .reject-btn:hover {
         background: #bbb;
-        left: 50px;
-        top: 20px;
+    }
+    .result-text {
+        margin-top: 20px;
+        font-size: 18px;
+        line-height: 1.8;
+        color: #333;
     }
 </style>
 </head>
@@ -98,13 +106,45 @@
 <div class="flower-bg" id="heart-bg"></div>
 
 <div class="container">
-    <h1>🦦 Киноны санал! 🦦 </h1>
-    <p>Энэ бол таны төлөө бэлдсэн жижигхэн гэнэтийн бэлэг надтай кино үзэх санал тавьж байна❤️</p>
-    <button class="btn accept-btn" onclick="alert('Та зөвшөөрлөө! ❤️')">Зөвшөөрөх</button>
-    <button class="btn reject-btn" onclick="alert('Та татгалзлаа 😢')">Татгалзах</button>
+    <h1>🦦 Кино үзэх санал! 🦦 </h1>
+    <p>Энэ бол таны төлөө бэлдсэн жижигхэн гэнэтийн бэлэг кино үзэх санал ❤️</p>
+    <button class="btn accept-btn" onclick="accept()">Зөвшөөрөх</button>
+    <button class="btn reject-btn" id="rejectBtn" onclick="reject()">Татгалзах</button>
+    
+    <div id="result" class="result-text"></div>
 </div>
 
 <script>
+    let rejectCount = 0;
+
+    function accept() {
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = `
+            <p>Сайн уу, Ундрах ☺️</p>
+            <p>Их ажлын дараах амралт🥳</p>
+            <p>Та кино үзэх эрх хожлоо！🥳🥳🥳</p>
+            <p>Шалтгаан: Өнөөдөр их хичээсэн болохоор 🥺</p>
+            <p>Кино үзэх санал хүлээж авах уу? ☺️</p>
+            <p style="color: #e91e63; font-weight: bold;">Санал хүлээн авлаа. ☺️</p>
+        `;
+        // Товчлуурыг нуу
+        document.querySelector('.accept-btn').style.display = 'none';
+        document.querySelector('.reject-btn').style.display = 'none';
+    }
+
+    function reject() {
+        rejectCount++;
+        const rejectBtn = document.getElementById('rejectBtn');
+        
+        // Санамсаргүй байрлалд нүүнэ
+        const randomX = Math.random() * (window.innerWidth - 150);
+        const randomY = Math.random() * (window.innerHeight - 100);
+        
+        rejectBtn.style.position = 'fixed';
+        rejectBtn.style.left = randomX + 'px';
+        rejectBtn.style.top = randomY + 'px';
+    }
+
     // Санамсаргүй цэцэг үүсгэх
     const flowers = ["🎬", "🍿", "🎬", "🎭"];
     const flowerBg = document.getElementById("flower-bg");
