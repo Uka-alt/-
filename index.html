@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="mn">
 <head>
-...
-(<!DOCTYPE html>
-<html lang="mn">
-<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Киноны санал</title>
@@ -68,6 +64,11 @@
         color: #333;
         margin-bottom: 15px;
     }
+    p {
+        color: #555;
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
     .btn {
         padding: 10px 20px;
         border: none;
@@ -75,11 +76,11 @@
         cursor: pointer;
         font-size: 16px;
         margin: 5px;
-        transition: 0.3s;
+        transition: 0.2s;
     }
     .accept-btn {
         background: #e91e63;
-        color: green;
+        color: white;
     }
     .accept-btn:hover {
         background: #d81b60;
@@ -91,6 +92,12 @@
     .reject-btn:hover {
         background: #bbb;
     }
+    .result-text {
+        margin-top: 20px;
+        font-size: 18px;
+        line-height: 1.8;
+        color: #333;
+    }
 </style>
 </head>
 <body>
@@ -99,13 +106,45 @@
 <div class="flower-bg" id="heart-bg"></div>
 
 <div class="container">
-    <h1>🦦 Сюрприз! 🦦 </h1>
-    <p>Энэ бол таны төлөө бэлдсэн жижигхэн гэнэтийн бэлэг ❤️</p>
-    <button class="btn accept-btn" onclick="alert('Та зөвшөөрлөө! ❤️')">Зөвшөөрөх</button>
-    <button class="btn reject-btn" onclick="alert('Та татгалзлаа 😢')">Татгалзах</button>
+    <h1>🦦 Кино үзэх санал! 🦦 </h1>
+    <p>Энэ бол таны төлөө бэлдсэн жижигхэн гэнэтийн бэлэг кино үзэх санал ❤️</p>
+    <button class="btn accept-btn" onclick="accept()">Зөвшөөрөх</button>
+    <button class="btn reject-btn" id="rejectBtn" onclick="reject()">Татгалзах</button>
+    
+    <div id="result" class="result-text"></div>
 </div>
 
 <script>
+    let rejectCount = 0;
+
+    function accept() {
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = `
+            <p>Сайн уу, Ундрах ☺️</p>
+            <p>Их ажлын дараах амралт🥳</p>
+            <p>Та кино үзэх эрх хожлоо！🥳🥳🥳</p>
+            <p>Шалтгаан: Өнөөдөр их хичээсэн болохоор 🥺</p>
+            <p>Кино үзэх санал хүлээж авах уу? ☺️</p>
+            <p style="color: #e91e63; font-weight: bold;">Санал хүлээн авлаа. ☺️</p>
+        `;
+        // Товчлуурыг нуу
+        document.querySelector('.accept-btn').style.display = 'none';
+        document.querySelector('.reject-btn').style.display = 'none';
+    }
+
+    function reject() {
+        rejectCount++;
+        const rejectBtn = document.getElementById('rejectBtn');
+        
+        // Санамсаргүй байрлалд нүүнэ
+        const randomX = Math.random() * (window.innerWidth - 150);
+        const randomY = Math.random() * (window.innerHeight - 100);
+        
+        rejectBtn.style.position = 'fixed';
+        rejectBtn.style.left = randomX + 'px';
+        rejectBtn.style.top = randomY + 'px';
+    }
+
     // Санамсаргүй цэцэг үүсгэх
     const flowers = ["🎬", "🍿", "🎬", "🎭"];
     const flowerBg = document.getElementById("flower-bg");
@@ -116,6 +155,7 @@
         f.style.left = Math.random() * 100 + "vw";
         f.style.top = Math.random() * 100 + "vh";
         f.style.animationDuration = (5 + Math.random() * 5) + "s";
+        f.style.animationDelay = Math.random() * 2 + "s";
         flowerBg.appendChild(f);
     }
 
@@ -127,13 +167,11 @@
         h.textContent = "❤️";
         h.style.left = Math.random() * 100 + "vw";
         h.style.animationDuration = (4 + Math.random() * 4) + "s";
+        h.style.animationDelay = Math.random() * 1 + "s";
         h.style.fontSize = (16 + Math.random() * 20) + "px";
         heartBg.appendChild(h);
     }
 </script>
 
-</body>
-</html>)
-...
 </body>
 </html>
